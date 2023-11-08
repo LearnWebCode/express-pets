@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Adoption | Manage Pets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <div class="page-section">
+    <div class="page-section-inner">
+      <a href="/" class="small-link">&laquo; Back to homepage</a>
+      <h1 class="page-section-title mb-big">Manage Pets</h1>
+      <div>
+        <a href="/admin/create-pet" class="add-pet-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+            fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+          </svg>
+          Add New Pet</a>
+      </div>
+
+      <div class="list-of-pets" style="padding-top: 30px">
+        <% pets.forEach(pet=> { %>
+          <div class="pet-card" data-species="<%= pet.species %>">
+            <div class="pet-card-text">
+              <h3>
+                <%= pet.name %>
+              </h3>
+              <p class="pet-description">
+                <%= pet.description %>
+              </p>
+              <div class="action-buttons">
+                <a href="/admin/edit-pet/<%= pet._id %>" class="action-btn">Edit</a>
+                <form class="delete-form" style="display: inline" action="/admin/delete-pet" method="POST">
+                  <input type="hidden" name="_id" value="<%= pet._id %>" />
+                  <button class="action-btn">Delete</button>
+                </form>
+              </div>
+            </div>
+            <div class="pet-card-photo">
+              <% if (pet.photo) { %>
+                <img
+                  src="https://res.cloudinary.com/<%= cloudname %>/image/upload/w_330,h_392,c_fill/<%= pet.photo %>.jpg"
+                  alt="A <%= pet.species %> named <%= pet.name %>" />
+                <% } else { %>
+                  <img src="/images/fallback.jpg" alt="A <%= pet.species %> named <%= pet.name %>" />
+                  <% } %>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p class="logout-text"><a href="/admin/logout">Logout</a></p>
+    <p>&copy; 2023 Fake Adoption Center. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const deleteForms = document.querySelectorAll(".delete-form")
+    deleteForms.forEach(el => {
+      el.addEventListener("submit", handleDelete)
+    })
+
+    function handleDelete(e) {
+      e.preventDefault()
+
+      if (confirm("Really delete this pet?")) {
+        // send request
+        const _id = e.target.querySelector("input[name=_id]").value
+        fetch("/admin/delete-pet-async", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ _id: _id })
+        })
+
+        // delete closest public-pet ancestor from dom
+        e.target.closest(".pet-card").remove()
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "start": "node db.js",
+    "dev": "nodemon db.js"
+  },
+  "dependencies": {
+    "cloudinary": "^1.41.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongodb": "^6.2.0",
+    "node-cache": "^5.1.2",
+    "nodemon": "^3.0.1",
+    "sanitize-html": "^2.11.0"
+  }
+}

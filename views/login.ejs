@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Adoption | Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <div class="page-section">
+    <div class="page-section-inner">
+      <a href="/" class="small-link">&laquo; Back to homepage</a>
+      <h1 class="page-section-title mb-big">You need to login first.</h1>
+      <form action="/login" method="POST">
+        <% if (failedAttempt) { %>
+          <p class="flash-message">The username and/or password details you provided are not valid.</p>
+          <% } %>
+            <input autofocus autocomplete="off" class="form-field" type="text" name="username" placeholder="Username" />
+            <input class="form-field" name="password" type="password" placeholder="Password" />
+            <button class="our-btn">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2023 Fake Adoption Center. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
