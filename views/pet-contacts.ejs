@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Contacts | Pet Adoption</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <div class="page-section">
+    <div class="page-section-inner">
+      <a href="/admin" class="small-link">&laquo; Back to admin dashboard</a>
+      <h1 class="page-section-title mb-big">Contacts for <%= pet.name %>
+      </h1>
+
+      <% if(contacts.length) { %>
+        <table class="contact-list">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Comment</th>
+          </tr>
+          <% contacts.forEach(contact=> { %>
+            <tr>
+              <td>
+                <%= contact.name %>
+              </td>
+              <td>
+                <%= contact.email %>
+              </td>
+              <td>
+                <%= contact.comment %>
+              </td>
+            </tr>
+            <% }) %>
+        </table>
+        <% } else { %>
+          <p>This pet has no contacts yet.</p>
+          <% } %>
+
+
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2023 Fake Adoption Center. All rights reserved.</p>
+  </footer>
+
+</body>
+
+</html>

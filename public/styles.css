@@ -437,6 +437,7 @@ textarea.form-field {
 
 /* Contact Form Styles */
 .form-overlay {
+  overflow-y: auto;
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(5px);
   position: fixed;
@@ -445,16 +446,183 @@ textarea.form-field {
   left: 0;
   right: 0;
   z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(1.2);
+  transition: all 0.33s ease-out;
+}
+
+.form-overlay--is-visible {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
 }
 
 .form-overlay-inner {
+  position: relative;
   max-width: 880px;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.07);
   background-color: #FFF;
   margin: 16px;
   flex: 1;
   align-self: center;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.form-photo {
+  order: 1;
+  grid-row: 1;
+  position: relative;
+  height: 200px;
+}
+
+.form-content {
+  padding: 38px 30px;
+}
+
+@media screen and (min-width: 745px) {
+  .form-overlay {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .form-content {
+    padding: 38px 54px;
+    position: relative;
+  }
+
+  .form-overlay-inner {
+    grid-template-columns: 340px 1fr;
+  }
+
+  .form-photo {
+    height: auto;
+  }
+}
+
+.form-photo p {
+  line-height: 1.2;
+  font-size: 0.9375rem;
+  color: #555;
+  position: absolute;
+  margin: 0;
+  padding: 16px 25px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.63);
+  backdrop-filter: blur(2px);
+}
+
+.form-photo p strong {
+  color: #000;
+  font-size: 2.25rem;
+  font-weight: normal;
+  display: block;
+}
+
+.form-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.justify-right {
+  display: flex;
+  justify-content: end;
+}
+
+.close-form-overlay {
+  z-index: 101;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 12px;
+  color: rgba(0, 0, 0, 0.41);
+  font-size: 2.25rem;
+  transform: scaleX(1.2);
+  opacity: .7;
+}
+
+.close-form-overlay:hover {
+  opacity: 1;
+}
+
+.pet-contact-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 12px;
+  position: relative;
+  top: 4px;
+  opacity: .7;
+  cursor: pointer;
+  outline: none;
+}
+
+.pet-contact-btn:hover {
+  opacity: 1;
+}
+
+.thank-you {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 102;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  transition: all .3s ease-out;
+}
+
+.thank-you--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.thank-you p {
+  align-self: center;
+  font-size: 1.4rem;
+}
+
+.thank-you svg {
+  color: rgb(12, 189, 12);
+  position: relative;
+  top: 4px;
+  margin-right: 4px;
+}
+
+.contact-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.contact-list th,
+.contact-list td {
+  padding: 10px;
+  vertical-align: top;
+}
+
+.contact-list th {
+  text-align: left;
+  font-weight: normal;
+  font-size: .87rem;
+  color: #7d7d7d;
+  padding: 0 10px;
+}
+
+.contact-list td {
+  font-size: 1rem;
+}
+
+.contact-list tr:nth-child(even) {
+  background-color: #f1f1f1;
 }

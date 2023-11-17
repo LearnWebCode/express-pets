@@ -37,6 +37,7 @@
               </p>
               <div class="action-buttons">
                 <a href="/admin/edit-pet/<%= pet._id %>" class="action-btn">Edit</a>
+                <a href="/admin/view-pet-contacts/<%= pet._id %>" class="action-btn">View Contacts</a>
                 <form class="delete-form" style="display: inline" action="/admin/delete-pet" method="POST">
                   <input type="hidden" name="_id" value="<%= pet._id %>" />
                   <button class="action-btn">Delete</button>
