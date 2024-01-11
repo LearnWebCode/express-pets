@@ -74,6 +74,14 @@ exports.actuallyUpdatePet = async (req, res) => {
     res.redirect("/")
   }
 
+  if (typeof req.body.name != "string") {
+    req.body.name = ""
+  }
+  
+  if (typeof req.body.description != "string") {
+    req.body.description = ""
+  }
+
   let ourNewObject = { name: sanitizeHtml(req.body.name, sanitizeOptions), birthYear: new Date().getFullYear(), species: sanitizeHtml(req.body.species, sanitizeOptions), description: sanitizeHtml(req.body.description, sanitizeOptions) }
 
   if (req.body.birthYear > 999 && req.body.birthYear < 9999) {
